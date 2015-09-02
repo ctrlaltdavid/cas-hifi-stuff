@@ -13,6 +13,12 @@
 //  Once you are in a mode left click on the object to inspect and hold the click
 //  Dragging the mouse will move your camera according to the mode you are in.
 //
+//  CtrlAltStudio modifications:
+//  - Leave camera where it is when release Alt key.
+//  - Restore camera to default position when prss Esc key.
+//
+//  CtrlAltStudio information: http://ctrlaltstudio.com/hifi
+//
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
@@ -226,6 +232,14 @@ function keyPressEvent(event) {
     changed = true;
   }
 
+  // CAS...
+  if (event.text === "ESC") {
+    mode = noMode;
+    restoreCameraState();
+    changed = true;
+  }
+  // ...CAS
+
   if (changed) {
     handleModes();
   }
@@ -237,8 +251,12 @@ function keyReleaseEvent(event) {
   if (event.text == "ALT") {
     alt = false;
     changed = true;
+    // CAS...
+    /*
     mode = noMode;
     restoreCameraState();
+    */
+    // ...CAS
   }
   if (event.text == "CONTROL") {
     control = false;
