@@ -15,7 +15,7 @@
 //
 //  CtrlAltStudio modifications:
 //  - Leave camera where it is when release Alt key.
-//  - Restore camera to default position when prss Esc key.
+//  - Restore camera to default position when press Esc key or move avatar.
 //
 //  CtrlAltStudio information: http://ctrlaltstudio.com/hifi
 //
@@ -43,6 +43,11 @@ var X_AXIS = {
 };
 
 var LOOK_AT_TIME = 500;
+
+// CAS...
+var AVATAR_POSITION_SLOP = 0.1;
+var AVATAR_ROTATION_SLOP = 0.09;  // 5 degrees
+// ... CAS
 
 var alt = false;
 var shift = false;
@@ -189,6 +194,8 @@ function handleModes() {
     avatarOrientation = MyAvatar.orientation;
   }
   // if leaving detachMode
+  // CAS...
+  /*
   if (mode == detachedMode && newMode == detachedMode &&
     (avatarPosition.x != MyAvatar.position.x ||
       avatarPosition.y != MyAvatar.position.y ||
@@ -198,6 +205,13 @@ function handleModes() {
       avatarOrientation.z != MyAvatar.orientation.z ||
       avatarOrientation.w != MyAvatar.orientation.w)) {
     newMode = noMode;
+  }
+  */
+  //... CAS
+  if (mode == detachedMode && newMode == detachedMode && (
+      Vec3.length(Vec3.subtract(avatarPosition, MyAvatar.position)) > AVATAR_POSITION_SLOP
+      || Vec3.length(Vec3.subtract(Quat.getFront(avatarOrientation), Quat.getFront(MyAvatar.orientation))) > AVATAR_ROTATION_SLOP)) {
+      newMode = noMode;
   }
 
   if (mode == noMode && newMode != noMode && Camera.mode == "independent") {
