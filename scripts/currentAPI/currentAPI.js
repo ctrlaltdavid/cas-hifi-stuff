@@ -7,6 +7,7 @@ Copyright 2014 High Fidelity, Inc.
 Modified by David Rowe:
 - ESLint.
 - Ignore Qt functions.
+- List top-level objects.
 
 Distributed under the Apache License, Version 2.0.
 See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
@@ -30,14 +31,17 @@ See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.
             return;
         }
 
-        if (typeof(object) !== "object" || object === null) {
-            array.push(string + " " + typeof(object));
+        if (typeof object !== "object" || object === null) {
+            array.push(string + " " + typeof object);
             return;
         }
 
         keys = Object.keys(object);
         for (i = 0, length = keys.length; i < length; i++) {
             if (string === "") {
+                if (object === this && typeof object[keys[i]] === "object") {
+                    array.push(keys[i] + " object"); // Top-level items
+                }
                 listKeys(keys[i], object[keys[i]]);
             } else if (keys[i] !== "parent"
                     && ["destroyed", "objectName", "objectNameChanged"].indexOf(keys[i].split("(")[0]) === -1) { // Qt functions
