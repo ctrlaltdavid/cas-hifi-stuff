@@ -6,6 +6,7 @@ Copyright 2014 High Fidelity, Inc.
 
 Modified by David Rowe:
 - ESLint.
+- Ignore Qt functions.
 
 Distributed under the Apache License, Version 2.0.
 See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
@@ -38,7 +39,8 @@ See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.
         for (i = 0, length = keys.length; i < length; i++) {
             if (string === "") {
                 listKeys(keys[i], object[keys[i]]);
-            } else if (keys[i] !== "parent") {
+            } else if (keys[i] !== "parent"
+                    && ["destroyed", "objectName", "objectNameChanged"].indexOf(keys[i].split("(")[0]) === -1) { // Qt functions
                 listKeys(string + "." + keys[i], object[keys[i]]);
             }
         }
