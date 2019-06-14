@@ -233,7 +233,7 @@ function keyPressEvent(event) {
   }
 
   // CAS...
-  if (event.text === "ESC") {
+  if (mode !== noMode && !alt && !control && !shift && /^ESC|LEFT|RIGHT|UP|DOWN|[wasdWASD]$/.test(event.text)) {
     mode = noMode;
     restoreCameraState();
     changed = true;
