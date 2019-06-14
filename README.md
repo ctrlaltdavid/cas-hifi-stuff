@@ -2,6 +2,8 @@
 
 CtrlAltStudio's public High Fidelity stuff.
 
+[LICENSE](./LICENSE)
+
 
 ## Scripts
 
