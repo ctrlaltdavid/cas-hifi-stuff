@@ -16,8 +16,9 @@
 //  CtrlAltStudio modifications:
 //  - Leave camera where it is when release Alt key.
 //  - Restore camera to default position when press Esc key or move avatar.
+//  - Add ability to orbit about a point in space if no object intersects mouse click.
 //
-//  CtrlAltStudio information: http://ctrlaltstudio.com/hifi
+//  CtrlAltStudio information: http://ctrlaltstudio.com/hifi/inspect
 //
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
@@ -308,6 +309,14 @@ function mousePressEvent(event) {
     if (modelIntersection.intersects && modelIntersection.accurate) {
       distance = modelIntersection.distance;
       center = modelIntersection.intersection;
+      // CAS...
+    } else {
+      // Orbit about a point in the air.
+      var ORBIT_DISTANCE = 10;
+      center = Vec3.sum(Camera.position, Vec3.multiply(ORBIT_DISTANCE, pickRay.direction));
+    }
+    {
+      // ...CAS
       string = "Inspecting model";
       //We've selected our target, now orbit towards it automatically
       rotatingTowardsTarget = true;
@@ -324,7 +333,6 @@ function mousePressEvent(event) {
 
       isActive = true;
     }
-
   }
 }
 
