@@ -16,6 +16,7 @@
 //  CtrlAltStudio modifications:
 //  - Leave camera where it is when release Alt key.
 //  - Restore camera to default position when press Esc key or move avatar.
+//  - Make camera control start immediately rather than having a 0.5s delay at the start.
 //  - Add ability to orbit about a point in space if no object intersects mouse click.
 //
 //  CtrlAltStudio information: http://ctrlaltstudio.com/hifi/inspect
@@ -318,12 +319,16 @@ function mousePressEvent(event) {
     {
       // ...CAS
       string = "Inspecting model";
+      // CAS...
+      /*
       //We've selected our target, now orbit towards it automatically
       rotatingTowardsTarget = true;
       //calculate our target cam rotation
       Script.setTimeout(function() {
         rotatingTowardsTarget = false;
       }, LOOK_AT_TIME);
+      */
+      // ... CAS
 
       vector = Vec3.subtract(position, center);
       targetCamOrientation = orientationOf(vector);
