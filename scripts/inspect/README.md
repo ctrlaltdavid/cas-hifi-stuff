@@ -9,3 +9,5 @@ Modifications:
 - Add ability to orbit about a point in space if no object intersects mouse click.
 
 More information: http://ctrlaltstudio.com/hifi/inspect
+
+[LICENSE](LICENSE)
