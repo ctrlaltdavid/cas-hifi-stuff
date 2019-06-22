@@ -7,6 +7,7 @@ Modifications:
 - ESLint.
 - Ignore Qt functions.
 - List top-level objects.
-- Record build version.
+- List build version.
+- Code switch to list root items only.
 
 [LICENSE](LICENSE)

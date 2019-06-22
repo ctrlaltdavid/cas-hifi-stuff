@@ -8,7 +8,8 @@ Modified by David Rowe:
 - ESLint.
 - Ignore Qt functions.
 - List top-level objects.
-- Record build version.
+- List build version.
+- Code switch to list root items only.
 
 Distributed under the Apache License, Version 2.0.
 See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
@@ -18,7 +19,8 @@ See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.
 
     "use strict";
 
-    var array = [],
+    var ROOT_ITEMS_ONLY = false,
+        array = [],
         buffer,
         i,
         length;
@@ -45,6 +47,7 @@ See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.
                 }
                 listKeys(keys[i], object[keys[i]]);
             } else if (keys[i] !== "parent"
+                    && !ROOT_ITEMS_ONLY
                     && ["destroyed", "objectName", "objectNameChanged"].indexOf(keys[i].split("(")[0]) === -1) { // Qt functions
                 listKeys(string + "." + keys[i], object[keys[i]]);
             }
