@@ -7,5 +7,6 @@ Modifications:
 - ESLint.
 - Ignore Qt functions.
 - List top-level objects.
+- Record build version.
 
 [LICENSE](LICENSE)

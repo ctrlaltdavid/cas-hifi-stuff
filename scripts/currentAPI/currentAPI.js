@@ -8,6 +8,7 @@ Modified by David Rowe:
 - ESLint.
 - Ignore Qt functions.
 - List top-level objects.
+- Record build version.
 
 Distributed under the Apache License, Version 2.0.
 See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
@@ -54,6 +55,7 @@ See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.
     array.sort();
 
     buffer = "\n======= JS API list =======";
+    buffer += "\n Build version: " + HifiAbout.buildVersion + "\n";
     for (i = 0, length = array.length; i < length; i++) {
         buffer += "\n" + array[i];
     }
