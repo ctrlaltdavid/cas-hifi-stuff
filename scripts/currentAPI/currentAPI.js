@@ -75,11 +75,11 @@ f = function () {
     listKeys("", _this);
     array.sort();
 
-    buffer = "\n======= JS API list =======";
-    buffer += "\n Script context: " + Script.context;
+    buffer = "\n========== JS API =========";
+    buffer += "\nScript context: " + Script.context;
     if (Script.context !== "entity_server" && Script.context !== "agent") {
         /* HifiAbout is not available to server entity or assignment client scripts. */
-        buffer += "\n Build version: " + HifiAbout.buildVersion;
+        buffer += "\nBuild version: " + HifiAbout.buildVersion;
     }
     buffer += "\n";
     for (i = 0, length = array.length; i < length; i++) {
