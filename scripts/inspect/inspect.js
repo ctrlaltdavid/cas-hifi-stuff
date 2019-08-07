@@ -18,7 +18,6 @@
 //  - Restore camera to default position when press Esc key or move avatar.
 //  - Make camera control start immediately rather than having a 0.5s delay at the start.
 //  - Add ability to orbit about a point in space if no object intersects mouse click.
-//  - Disable when High Fidelity's Create app is active, to avoid Alt-duplicating entities.
 //
 //  CtrlAltStudio information: http://ctrlaltstudio.com/hifi/inspect
 //
@@ -57,9 +56,6 @@ var shift = false;
 var control = false;
 
 var isActive = false;
-// CAS...
-var isEnabled = false;
-// ...CAS
 
 var oldMode = Camera.mode;
 var noMode = 0;
@@ -289,12 +285,6 @@ function keyReleaseEvent(event) {
 }
 
 function mousePressEvent(event) {
-    // CAS...
-    if (!isEnabled) {
-        return;
-    }
-    // ...CAS
-
     if (alt && !isActive) {
         mouseLastX = event.x;
         mouseLastY = event.y;
@@ -349,12 +339,6 @@ function mouseReleaseEvent(event) {
 }
 
 function mouseMoveEvent(event) {
-    // CAS...
-    if (!isEnabled) {
-        return;
-    }
-    // ...CAS
-
     if (isActive && mode != noMode && !rotatingTowardsTarget) {
         if (mode == radialMode) {
             handleRadialMode(event.x - mouseLastX, event.y - mouseLastY);
@@ -394,31 +378,6 @@ Controller.keyReleaseEvent.connect(keyReleaseEvent);
 Controller.mousePressEvent.connect(mousePressEvent);
 Controller.mouseReleaseEvent.connect(mouseReleaseEvent);
 Controller.mouseMoveEvent.connect(mouseMoveEvent);
-
-// CAS...
-// Disable inspect behavior when High Fidelity's Create app is active.
-var isCheckingforEditAtStart = true;
-var isCreateRunningAtStart = false;
-Messages.messageReceived.connect(function (channel, message, senderID, localOnly) {
-    // Create app emits "edit-events" message when activating and inactivating.
-    // Use this to enable and disable inspect action.
-    if (channel === "edit-events" && senderID === MyAvatar.sessionUUID) {
-        try {
-            isEnabled = !JSON.parse(message).enabled;
-        } catch (e) {
-            // Nothing to do.
-        }
-    } else if (isCheckingforEditAtStart && channel === "entityToolUpdates" && senderID === MyAvatar.sessionUUID) {
-        // Create app emits "entityToolUpdates" messages continuously when active.
-        // Use this to check whether the Create app is running at script start.
-        isCreateRunningAtStart = true;
-    }
-});
-Script.setTimeout(function () {
-    isEnabled = !isCreateRunningAtStart;
-    isCheckingforEditAtStart = false;
-}, 100);
-// ...CAS
 
 Script.update.connect(update);
 Script.scriptEnding.connect(scriptEnding);
