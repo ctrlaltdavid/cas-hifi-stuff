@@ -2,6 +2,9 @@
 
 CtrlAltStudio's modified version of High Fidelity's inspect.js script.
 
+_Superseded by the inspect.js included in [Project Athena](https://projectathena.io/) which includes the following modifications
+plus more._
+
 Modifications:
 - Leave camera where it is when release Alt key.
 - Restore camera to default position when press Esc key or move avatar.
