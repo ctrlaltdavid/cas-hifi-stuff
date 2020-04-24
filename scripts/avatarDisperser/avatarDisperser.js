@@ -4,8 +4,8 @@ avatarDisperser.js
 Created by David Rowe on 19 Apr 2020
 Copyright 2020 David Rowe.
 
-Disperses avatars spawning in a domain so that they don't land at the same coordinates as each other avatar. Set up this script 
-as a client entity script in an (invisible, collisionless) entity at the landing point in the domain.
+Disperses avatars spawning in a domain so that they don't land at the same coordinates as each other. Set up this script as a
+client entity script in an (invisible, collisionless) entity at the landing point in the domain.
 
 Distributed under the Apache License, Version 2.0.
 See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
