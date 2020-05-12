@@ -7,7 +7,7 @@ CtrlAltStudio's miscellaneous public Vircadia stuff.
 
 ## Apps
 
-**[radar.js](apps.radar)** - Show where people are and teleport in the domain.
+**[radar.js](apps/radar)** - Show where people are and teleport in the domain.
 
 
 ## Scripts
