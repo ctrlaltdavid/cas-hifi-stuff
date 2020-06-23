@@ -9,6 +9,8 @@ CtrlAltStudio's miscellaneous public Vircadia stuff.
 
 **[radar.js](apps/radar)** - Show where people are and teleport in the domain.
 
+**[nametags.js](apps/nametags)** - Display users' display names above their heads.
+
 
 ## Scripts
 
